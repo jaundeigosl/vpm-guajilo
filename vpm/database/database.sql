@@ -174,7 +174,7 @@ CREATE TABLE client
     transport_bf_rate         INT,
     transport_bi_rate         INT,
     created_at                TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at                TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at                TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     FOREIGN KEY (region_id) REFERENCES region (id),
     FOREIGN KEY (sector_id) REFERENCES productive_sector (id),
@@ -205,7 +205,7 @@ CREATE TABLE notas_credito
     comentarios_2 TEXT,
     created_at    TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
     updated_at    TIMESTAMP      DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (cliente_id) REFERENCES clientes (id) ON DELETE RESTRICT
+    FOREIGN KEY (cliente_id) REFERENCES client (id) ON DELETE RESTRICT
 );
 
 CREATE TABLE facturas
@@ -239,7 +239,7 @@ CREATE TABLE facturas
     rango_mas_91  DECIMAL(15, 2) DEFAULT 0,
     created_at    TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
     updated_at    TIMESTAMP      DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (cliente_id) REFERENCES clientes (id) ON DELETE RESTRICT
+    FOREIGN KEY (cliente_id) REFERENCES client (id) ON DELETE RESTRICT
 );
 
 CREATE TABLE cuentas_por_cobrar
@@ -257,7 +257,7 @@ CREATE TABLE cuentas_por_cobrar
     saldo_total  DECIMAL(15, 2) DEFAULT 0,
     created_at   TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
     updated_at   TIMESTAMP      DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (cliente_id) REFERENCES clientes (id) ON DELETE RESTRICT
+    FOREIGN KEY (cliente_id) REFERENCES client (id) ON DELETE RESTRICT
 );
 
 CREATE TABLE vencido_resumen
@@ -287,7 +287,7 @@ CREATE TABLE vencido_cliente
     created_at     TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
     updated_at     TIMESTAMP      DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (resumen_id) REFERENCES vencido_resumen (id) ON DELETE CASCADE,
-    FOREIGN KEY (cliente_id) REFERENCES clientes (id) ON DELETE RESTRICT
+    FOREIGN KEY (cliente_id) REFERENCES client (id) ON DELETE RESTRICT
 );
 
 CREATE TABLE transacciones_canceladas
@@ -297,7 +297,7 @@ CREATE TABLE transacciones_canceladas
     client_id   INT,
     motivo      TEXT,
     comentarios TEXT,
-    FOREIGN KEY (cliente_id) REFERENCES client (id) ON DELETE RESTRICT
+    FOREIGN KEY (client_id) REFERENCES client (id) ON DELETE RESTRICT
 );
 
 CREATE TABLE notas_credito_acumuladas
@@ -309,7 +309,7 @@ CREATE TABLE notas_credito_acumuladas
     responsable VARCHAR(255),
     motivo      TEXT,
     client_id   INT,
-    FOREIGN KEY (cliente_id) REFERENCES client (id) ON DELETE RESTRICT
+    FOREIGN KEY (client_id) REFERENCES client (id) ON DELETE RESTRICT
 );
 
 CREATE TABLE pagos_semanales
@@ -344,7 +344,7 @@ CREATE TABLE perfil_pagos
     dias_credito_servicio INT       DEFAULT 0,
     created_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (cliente_id) REFERENCES clientes (id) ON DELETE RESTRICT
+    FOREIGN KEY (cliente_id) REFERENCES client (id) ON DELETE RESTRICT
 );
 
 
