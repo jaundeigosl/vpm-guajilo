@@ -1,0 +1,292 @@
+/* ===== Reset básico ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== Tipografía global ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background-color: #f4f6f9;
+}
+
+/* ===== Botones ===== */
+.btn {
+    height: 48px;
+    padding: 0 1rem;
+    border: none;
+    border-radius: 24px;
+    background-color: #ff7a00;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #e06600;
+}
+
+a .btn-crud{
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #ff7a00;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-right: 0.5rem;
+}
+
+a .btn-crud:hover{
+    background-color: #e06600;
+    transform: scale(1.03);
+}
+
+a .btn-crud:active{
+    transform: scale(0.97);
+}
+
+a .btn-crud + .btn-crud{
+    margin-left: 0.5rem;
+}
+
+/* ===== Formularios ===== */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    color: #555;
+}
+
+ul,
+ol {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+
+input {
+    height: 48px;
+    padding: 0 1rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: #ff7a00;
+    outline: none;
+}
+
+/* ===== Mensajes ===== */
+.error {
+    color: #d93025;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.success {
+    color: #1e7e34;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+/* ===== Enlaces ===== */
+.link {
+    color: #ff7a00;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* ===== Layout principal ===== */
+.app-wrapper {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    transition: margin-left 0.3s ease;
+}
+
+.content-wrapper.shifted {
+    margin-left: 60px;
+}
+
+.header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    background: #fff;
+    border-bottom: 1px solid #ececec;
+}
+
+.header__menu-btn {
+    font-size: 1.75rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.header__usermenu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header__username {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.header__usermenu a {
+    font-size: 1.3rem;
+    padding: 0.4rem;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.header__usermenu a:hover {
+    background: rgba(255, 122, 0, 0.15);
+}
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    background: #f4f6f9;
+    overflow-y: auto;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    /*.sidebar {*/
+    /*    position: fixed;*/
+    /*    left: -240px;*/
+    /*    top: 0;*/
+    /*    height: 100%;*/
+    /*    z-index: 1000;*/
+    /*}*/
+    
+    /*.sidebar.open {*/
+    /*    transform: translateX(240px);*/
+    /*}*/
+
+    .content-wrapper.shifted {
+        margin-left: 0;
+    }
+
+    /*.sidebar__close-btn {*/
+    /*    display: block;*/
+    /*    position: absolute;*/
+    /*    top: 1rem;*/
+    /*    right: 1rem;*/
+    /*    background: none;*/
+    /*    border: none;*/
+    /*    font-size: 1.5rem;*/
+    /*    cursor: pointer;*/
+    /*}*/
+}
+
+/* ==Listados== */
+.table-container {
+    margin-top: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos de la tabla */
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 1px solid #767676;
+}
+
+.table-container th,
+.table-container td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #767676;
+}
+
+.table-container th {
+    background-color: transparent; /* Encabezado sin fondo */
+    font-weight: bold;
+    position: relative; /* Para posicionar las flechas de ordenamiento */
+}
+
+.table-container th::after {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+    width: 10px;
+    height: 10px;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+}
+
+.table-container th:hover::after {
+    border-color: #007bff; /* Cambiar color al hover */
+}
+
+.table-container tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-container td:last-child {
+    white-space: nowrap; /* Evita que las acciones se rompan en varias líneas */
+}
+
+/* Estilos para los botones de acciones */
+.table-container a {
+    margin-right: 0.5rem;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.table-container a:hover {
+    color: #0056b3;
+}
+
+/* Mensaje cuando no hay datos */
+.table-container td[colspan] {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .table-container th,
+    .table-container td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}

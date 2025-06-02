@@ -1,0 +1,50 @@
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: ${APP_NAME}
+    volumes:
+      - .:/var/www/html
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    depends_on:
+      - db
+    networks:
+      - backend
+    env_file:
+      - .env
+
+  webserver:
+    image: nginx:alpine
+    container_name: nginx_facturacion
+    volumes:
+      - .:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "${WEB_PORT}:80"
+    depends_on:
+      - app
+    networks:
+      - backend
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_facturacion
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - backend
+
+volumes:
+  db_data:
+
+networks:
+  backend:
